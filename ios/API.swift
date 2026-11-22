@@ -2,7 +2,7 @@ import Foundation
 
 struct PropertyAPI {
     // Change this to your deployed HTTPS backend URL (no trailing slash).
-    static let baseURL = static let baseURL = "https://propertymap-1.onrender.com"
+    static let baseURL = "https://propertymap-1.onrender.com"
 
     static func nearby(latitude: Double, longitude: Double, radius: Double, mode: String) async throws -> [Property] {
         var url = URLComponents(string: "\(baseURL)/api/properties")!
