@@ -1,0 +1,17 @@
+workflows:
+  propertymap-ios-check:
+    name: PropertyMap iOS compile check
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - name: Install XcodeGen
+        script: |
+          brew install xcodegen
+      - name: Generate Xcode project
+        script: |
+          xcodegen generate --spec project.yml
+      - name: Compile for iOS Simulator (no signing required)
+        script: |
+          xcodebuild -project PropertyMap.xcodeproj -scheme PropertyMap -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
